@@ -1,0 +1,38 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /resource
+
+jwt:
+  auth:
+    converter:
+      resource-id: springboot-keycloak-client
+      principal-attribute: preferred_username
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: "200MB"
+      max-request-size: "210MB"
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://vafonov.ru:8081/realms/dotsphoto
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+  datasource:
+    url: jdbc:postgresql://vafonov.ru:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            scripts:
+              action: create
+              create-target: create.sql
+              create-source: metadata
