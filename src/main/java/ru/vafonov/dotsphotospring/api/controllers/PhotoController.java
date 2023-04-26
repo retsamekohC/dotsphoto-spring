@@ -52,7 +52,7 @@ public class PhotoController {
             Long photoId = Long.parseLong(id);
             Photo photo = photoService.findById(photoId);
             User user = userService.findByNickname(JwtTokenUtils.getUserNameFromToken(token));
-            if (ownershipService.findById(new OwnershipPK(photo.getAlbum().getId(), user.getId())) != null) {
+            if (ownershipService.findById(new OwnershipPK(user.getId(), photo.getAlbum().getId())) != null) {
                 return ResponseEntity.ok(mapper.entityToDto(photo));
             } else {
                 return ResponseEntity.notFound().build();
