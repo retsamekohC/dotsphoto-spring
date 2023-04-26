@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "user", schema = "dotsphoto", indexes = {
+@Table(schema = "dotsphoto", name = "user", indexes = {
         @Index(columnList = "root_album_link"),
         @Index(columnList = "subscription_link"),
         @Index(columnList = "nickname")
@@ -20,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "dotsphoto.user_seq", schema = "dotsphoto", sequenceName = "dotsphoto.user_seq")
+    @SequenceGenerator(schema = "dotsphoto", name = "user_seq", sequenceName = "user_seq")
     @Column(name = "user_id")
     private Long id;
     @Basic

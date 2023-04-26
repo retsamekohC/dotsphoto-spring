@@ -11,7 +11,7 @@ import java.sql.Date;
 
 @Entity
 @Data
-@Table(name = "photo", schema = "dotsphoto", indexes = {
+@Table(schema = "dotsphoto", name = "photo", indexes = {
         @Index(columnList = "metadata_link"),
         @Index(columnList = "album_link")
 })
@@ -22,7 +22,7 @@ public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "dotsphoto.photo_seq", schema = "dotsphoto", sequenceName = "dotsphoto.photo_seq")
+    @SequenceGenerator(schema = "dotsphoto", name = "photo_seq", sequenceName = "photo_seq")
     @Column(name = "photo_id")
     private Long id;
     @Basic

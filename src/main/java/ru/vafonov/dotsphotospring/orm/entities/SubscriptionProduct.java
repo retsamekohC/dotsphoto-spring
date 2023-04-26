@@ -9,7 +9,7 @@ import ru.vafonov.dotsphotospring.orm.enums.DataStatuses;
 
 @Entity
 @Data
-@Table(name = "subscription_product", schema = "dotsphoto")
+@Table(schema = "dotsphoto", name = "subscription_product")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,7 +17,7 @@ public class SubscriptionProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "dotsphoto.subscription_product_seq", schema = "dotsphoto", sequenceName = "dotsphoto.subscription_product_seq")
+    @SequenceGenerator(schema = "dotsphoto", name = "subscription_product_seq", sequenceName = "subscription_product_seq")
     @Column(name = "product_id")
     private Long id;
     @Basic

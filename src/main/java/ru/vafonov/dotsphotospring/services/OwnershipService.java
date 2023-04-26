@@ -18,6 +18,7 @@ public class OwnershipService extends BaseEntityService<Ownership, OwnershipPK, 
         Ownership ownership = new Ownership();
         ownership.setOwnedAlbum(album);
         ownership.setUserLink(user);
+        ownership.setPk(new OwnershipPK(user.getId(), album.getId()));
         ownership.setOwnershipLevels(OwnershipLevels.OWNER);
         return repository.save(ownership);
     }

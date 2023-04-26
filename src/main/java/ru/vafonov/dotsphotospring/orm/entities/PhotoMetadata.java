@@ -10,7 +10,7 @@ import java.sql.Date;
 
 @Entity
 @Data
-@Table(name = "photo_metadata", schema = "dotsphoto")
+@Table(schema = "dotsphoto", name = "photo_metadata")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -18,7 +18,7 @@ public class PhotoMetadata {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "dotsphoto.photo_metadata_seq", schema = "dotsphoto", sequenceName = "dotsphoto.photo_metadata_seq")
+    @SequenceGenerator(schema = "dotsphoto", name = "photo_metadata_seq", sequenceName = "photo_metadata_seq")
     @Column(name = "metadata_id")
     private Long id;
     @Basic

@@ -14,9 +14,6 @@ import java.sql.Date;
 @Service
 public class AlbumService extends BaseLongIdEntityService<Album, AlbumRepository> {
 
-    @Autowired
-    private OwnershipService ownershipService;
-
     public AlbumService(AlbumRepository repository) {
         super(repository);
     }
@@ -33,7 +30,6 @@ public class AlbumService extends BaseLongIdEntityService<Album, AlbumRepository
         album.setStatus(DataStatuses.ACTIVE);
         album.setKilobyteSize(0);
         album = repository.save(album);
-        ownershipService.createOwnershipOwner(user, album);
         return album;
     }
 }

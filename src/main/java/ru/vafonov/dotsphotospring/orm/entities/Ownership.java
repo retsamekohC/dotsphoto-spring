@@ -9,7 +9,7 @@ import ru.vafonov.dotsphotospring.orm.enums.OwnershipLevels;
 
 @Entity
 @Data
-@Table(name = "ownership", schema = "dotsphoto", indexes = {
+@Table(schema = "dotsphoto",name = "ownership", indexes = {
         @Index(columnList = "user_link_user_id"),
         @Index(columnList = "owned_album_album_id")
 })
@@ -23,10 +23,12 @@ public class Ownership {
 
     @OneToOne(fetch = FetchType.EAGER)
     @MapsId("userId")
+    @JoinColumn(name = "user_link_user_id")
     private User userLink;
 
     @OneToOne(fetch = FetchType.EAGER)
     @MapsId("albumId")
+    @JoinColumn(name = "owned_album_album_id")
     private Album ownedAlbum;
 
     @Basic

@@ -10,7 +10,7 @@ import java.sql.Date;
 
 @Entity
 @Data
-@Table(name = "subscription", schema = "dotsphoto", indexes = {
+@Table(schema = "dotsphoto", name = "subscription", indexes = {
         @Index(columnList = "product_link")
 })
 @AllArgsConstructor
@@ -20,11 +20,11 @@ public class Subscription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "dotsphoto.subscription_seq", schema = "dotsphoto", sequenceName = "dotsphoto.subscription_seq")
+    @SequenceGenerator(schema = "dotsphoto", name = "subscription_seq", sequenceName = "subscription_seq")
     @Column(name = "subscription_id")
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_link", nullable = false)
+    @JoinColumn(name = "product_link")
     private SubscriptionProduct productLink;
     @Basic
     @Column(name = "date_from", nullable = false)

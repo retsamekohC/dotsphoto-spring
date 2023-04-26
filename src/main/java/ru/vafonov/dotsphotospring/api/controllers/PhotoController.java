@@ -42,6 +42,7 @@ public class PhotoController {
     @GetMapping(path="/ids")
     public ResponseEntity<List<Long>> getAllIds(JwtAuthenticationToken token) {
         User user = userService.findByNickname(JwtTokenUtils.getUserNameFromToken(token));
+        if (user == null) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(photoService.findAllByAlbum(user.getRootAlbum()).stream().map(Photo::getId).toList());
     }
 

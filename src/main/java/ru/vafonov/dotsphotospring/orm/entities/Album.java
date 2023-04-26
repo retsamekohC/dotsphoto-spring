@@ -12,13 +12,13 @@ import java.sql.Date;
 @Builder
 @Entity
 @Data
-@Table(name = "album", schema = "dotsphoto")
+@Table(schema = "dotsphoto", name = "album")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "dotsphoto.album_seq", schema = "dotsphoto", sequenceName = "dotsphoto.album_seq")
+    @SequenceGenerator( schema = "dotsphoto", name = "album_seq", sequenceName = "album_seq")
     @Column(name = "album_id")
     private Long id;
     @Basic

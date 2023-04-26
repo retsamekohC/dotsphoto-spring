@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import ru.vafonov.dotsphotospring.orm.dto.UserDto;
+import ru.vafonov.dotsphotospring.orm.entities.Album;
 import ru.vafonov.dotsphotospring.orm.entities.User;
 import ru.vafonov.dotsphotospring.orm.repositories.UserRepository;
 
@@ -14,6 +15,9 @@ public class UserService extends BaseLongIdEntityService<User, UserRepository> {
 
     @Autowired
     private AlbumService albumService;
+
+    @Autowired
+    private OwnershipService ownershipService;
 
     @Autowired
     private SubscriptionService subscriptionService;
@@ -29,8 +33,11 @@ public class UserService extends BaseLongIdEntityService<User, UserRepository> {
     public User registerUser(String userNickname) {
         User user = new User();
         user.setNickname(userNickname);
-        user.setRootAlbum(albumService.createRootAlbumForUser(user));
+        Album rootAlbum = albumService.createRootAlbumForUser(user);
+        user.setRootAlbum(rootAlbum);
         user.setSubscription(subscriptionService.createSimpleSubscription());
-        return repository.save(user);
+        user = repository.save(user);
+        ownershipService.createOwnershipOwner(user, rootAlbum);
+        return user;
     }
 }
